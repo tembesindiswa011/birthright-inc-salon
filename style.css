@@ -1,0 +1,1322 @@
+/* =========================================
+   CSS VARIABLES — edit these to update the
+   whole site's look from one place
+   ========================================= */
+:root {
+  /* Colors */
+  --color-bg: #f4f4ef;
+  --color-header-text: #20332d;
+  --color-body-text: #303d37;
+  --color-card-bg: #ffffff;
+  --color-card-header: #20332d;
+  --color-btn-primary: #b94336;
+  --color-btn-secondary: #e2ebe4;
+  --color-accent: #a83d4b;
+
+  /* Fonts */
+  --font-header: 'Playfair Display', Georgia, serif;
+  --font-subheader: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* =========================================
+   RESET — removes browser default spacing
+   and sets consistent box-sizing everywhere
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-body-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* =========================================
+   TYPOGRAPHY DEFAULTS
+   ========================================= */
+h1, h2, h3, h4 {
+  font-family: var(--font-header);
+  color: var(--color-header-text);
+  line-height: 1.2;
+}
+
+h5, h6, .subheader {
+  font-family: var(--font-subheader);
+  color: var(--color-header-text);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================
+   REUSABLE BUTTON STYLES
+   (available for use in any section)
+   ========================================= */
+.btn {
+  display: inline-block;
+  font-family: var(--font-header);
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background-color: var(--color-btn-primary);
+  color: var(--color-bg);
+}
+
+.btn-secondary {
+  background-color: var(--color-btn-secondary);
+  color: var(--color-header-text);
+  border-color: var(--color-btn-primary);
+}
+
+/* =========================================
+   REUSABLE CARD STYLES
+   (available for use in any section)
+   ========================================= */
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.card h3, .card h4 {
+  color: var(--color-card-header);
+}
+
+/* =========================================
+   SECTION STYLES BELOW
+   (each new section's CSS gets added here,
+   in the order we build them)
+   ========================================= */
+
+/* -----------------------------------------
+   HERO SECTION
+   ----------------------------------------- */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 70px); /* fills the screen below the navbar */
+  padding: 2rem 1.5rem;
+}
+
+.hero-container {
+  display: flex;
+  align-items: stretch; /* makes both columns the same height */
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Two equal columns, 50% each */
+.hero-content,
+.hero-visual {
+  flex: 1 1 50%;
+}
+
+/* Since the columns now stretch to match height, keep the text
+   vertically centered within its own column rather than top-aligned */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Subheader sits directly above the header, with tight spacing between them */
+.hero-subheader {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.hero-header {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  margin-bottom: 1.25rem;
+}
+
+.hero-body {
+  font-size: 1.05rem;
+  color: var(--color-body-text);
+  max-width: 500px;
+  margin-bottom: 1.75rem;
+}
+
+.hero-cta {
+  margin-bottom: 1.75rem;
+}
+
+/* Social buttons row */
+.hero-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.social-btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Image column on the right */
+.hero-visual {
+  min-height: 300px;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills the column without distorting the image */
+  border-radius: 8px;
+}
+
+/* -----------------------------------------
+   RESPONSIVE: stack hero columns below 700px
+   ----------------------------------------- */
+@media (max-width: 700px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .hero-visual {
+    order: -1; /* image appears above text on small screens */
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: -1vh; /* slight overlap between image and text below it */
+  }
+}
+
+/* -----------------------------------------
+   ABOUT SECTION
+   ----------------------------------------- */
+.about {
+  padding: 5rem 1.5rem;
+}
+
+.about-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-text,
+.about-tabs {
+  flex: 1 1 50%;
+}
+
+.about-text h2 {
+  margin-bottom: 1.5rem;
+}
+
+.about-text p {
+  margin-bottom: 1.25rem;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Tab headers */
+.tabs-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(239, 203, 104, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  font-family: var(--font-header);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  color: var(--color-body-text);
+  padding: 0.75rem 0.25rem;
+  margin-bottom: -1px; /* overlaps the header's bottom border */
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--color-accent);
+}
+
+.tab-btn.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* Tab panels */
+.tab-panel[hidden] {
+  display: none;
+}
+
+/* Main Skills: six visual category boxes */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.skill-category {
+  min-height: 150px;
+  padding: 1.15rem;
+  background-color: var(--color-card-bg);
+  border: 1px solid rgba(18, 49, 74, 0.12);
+  border-top: 4px solid var(--color-accent);
+  border-radius: 8px;
+}
+
+.skill-category h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.skill-tags span {
+  padding: 0.35rem 0.55rem;
+  background-color: var(--color-btn-secondary);
+  color: var(--color-body-text);
+  border-radius: 4px;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+/* Education / Experience: 2-column table with point-form text */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table tr {
+  border-bottom: 1px solid rgba(239, 203, 104, 0.15);
+}
+
+.info-table tr:last-child {
+  border-bottom: none;
+}
+
+.info-table td {
+  padding: 1rem 0.5rem;
+  vertical-align: top;
+}
+
+.info-table-label {
+  width: 40%;
+  font-family: var(--font-header);
+  font-weight: 600;
+  color: var(--color-header-text);
+  font-size: 0.9rem;
+}
+
+.info-table-sub {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-body-text);
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.info-table ul {
+  list-style: disc;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+}
+
+.info-table li {
+  margin-bottom: 0.4rem;
+}
+
+.info-table li:last-child {
+  margin-bottom: 0;
+}
+
+/* Certifications & Awards: card grid */
+.cert-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.cert-card {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.cert-card h4 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* -----------------------------------------
+   RESPONSIVE: stack About columns below 700px
+   ----------------------------------------- */
+@media (max-width: 700px) {
+  .about-container {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -----------------------------------------
+   PORTFOLIO WORK SECTION (bento grid)
+   ----------------------------------------- */
+.portfolio {
+  padding: 5rem 1.5rem;
+}
+
+.portfolio-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ROW 1: centered header */
+.portfolio-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* ROW 2: bento grid — 3 equal columns; the first card
+   spans 2 of them, the rest occupy 1 column each */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.bento-card {
+  padding: 0; /* image needs to sit flush against the card edges */
+  overflow: hidden;
+}
+
+.bento-card--wide {
+  grid-column: span 2;
+}
+
+.bento-card--feature {
+  grid-column: 1 / -1;
+}
+
+/* Square image at the top of regular cards */
+.bento-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* The wide card gets a wider image to match its shape */
+.bento-card--wide .bento-img {
+  width: 88%;
+  max-width: 760px;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  object-position: center;
+  background-color: var(--color-btn-secondary);
+  margin: 1rem auto 0;
+  border-radius: 12px 12px 0 0;
+}
+
+.bento-card--feature .bento-img {
+  aspect-ratio: 3 / 1;
+  object-position: center;
+}
+
+.bento-card-body {
+  padding: 1.25rem;
+}
+
+.bento-card-body h4 {
+  color: var(--color-card-header);
+  margin-bottom: 0.35rem;
+}
+
+.portfolio-meta {
+  display: block;
+  font-family: var(--font-subheader);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--color-card-header);
+  opacity: 0.75;
+  margin-bottom: 0.75rem;
+}
+
+.portfolio-excerpt {
+  font-size: 0.9rem;
+  color: var(--color-card-header);
+  line-height: 1.6;
+  margin-bottom: 0.85rem;
+}
+
+.portfolio-excerpt strong {
+  display: inline-block;
+  color: var(--color-card-header);
+  font-weight: 700;
+  margin-right: 0.1rem;
+}
+
+.portfolio-link {
+  font-family: var(--font-header);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-card-header);
+}
+
+.portfolio-link:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------------------
+   RESPONSIVE: collapse bento grid below 700px
+   ----------------------------------------- */
+@media (max-width: 700px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-card--wide {
+    grid-column: span 1;
+  }
+
+  .bento-card--feature {
+    grid-column: span 1;
+  }
+}
+
+/* -----------------------------------------
+   CONTACT / CTA SECTION
+   ----------------------------------------- */
+.contact-cta {
+  background-color: var(--color-accent);
+  padding: 5rem 1.5rem;
+}
+
+.contact-container {
+  display: flex;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 33% / 66% split */
+.contact-left {
+  flex: 0 0 33%;
+  max-width: 33%;
+}
+
+.contact-right {
+  flex: 0 0 66%;
+  max-width: 66%;
+  display: flex;
+  align-items: center;
+}
+
+/* The accent colour is now the background, so headings/body text
+   need dark overrides here — otherwise gold-on-gold would be invisible */
+.contact-left h2 {
+  color: var(--color-bg);
+  margin-bottom: 1rem;
+}
+
+.contact-left p {
+  color: var(--color-bg);
+  font-size: 1rem;
+}
+
+/* 2-column table: icon cell + copy cell */
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contact-table tr {
+  border-bottom: 1px solid rgba(0, 4, 17, 0.15);
+}
+
+.contact-table tr:last-child {
+  border-bottom: none;
+}
+
+.contact-table td {
+  padding: 1.1rem 0.5rem;
+  vertical-align: middle;
+}
+
+.contact-icon {
+  width: 44px;
+  color: var(--color-card-header);
+}
+
+.contact-icon svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.contact-copy {
+  font-family: var(--font-header);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-bg);
+}
+
+.contact-copy a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-copy a:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------------------
+   RESPONSIVE: stack Contact columns below 700px
+   ----------------------------------------- */
+@media (max-width: 700px) {
+  .contact-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-left,
+  .contact-right {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* -----------------------------------------
+   FOOTER
+   ----------------------------------------- */
+.site-footer {
+  background-color: var(--color-bg);
+  border-top: 1px solid rgba(239, 203, 104, 0.15);
+  padding: 1.5rem;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: var(--color-body-text);
+}
+
+/* Reuses the same .social-btn styling as the Hero section's icons */
+.footer-socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+@media print {
+  .navbar {
+    display: block !important;
+    position: static !important;
+  }
+
+  .hero-socials,
+  #print-portfolio {
+    display: none !important;
+  }
+
+  .hero-cta {
+    display: inline-block !important;
+  }
+
+  .site-footer {
+    display: block !important;
+  }
+
+  .tab-panel[hidden] {
+    display: block !important;
+  }
+
+  .tab-panel {
+    break-inside: avoid;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .hero,
+  .about,
+  .portfolio,
+  .contact-cta {
+    padding: 1.5rem 0;
+  }
+}
+
+/* -----------------------------------------
+   RESPONSIVE: stack footer content below 700px
+   ----------------------------------------- */
+@media (max-width: 700px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* -----------------------------------------
+   PROJECT DETAIL PAGE (project.html template)
+   ----------------------------------------- */
+
+/* Floating "back to home" button — replaces the navbar on this page */
+.back-btn {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--color-bg);
+  border: 1px solid rgba(239, 203, 104, 0.3);
+  color: var(--color-header-text);
+  font-family: var(--font-header);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: var(--color-btn-secondary);
+  transform: translateX(-2px);
+}
+
+.back-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.project-detail {
+  padding: 7rem 1.5rem 5rem; /* extra top padding clears the floating back button */
+}
+
+.project-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ROW 1: centered title */
+.project-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+/* ROW 2: featured image */
+.project-featured {
+  margin-bottom: 2.5rem;
+}
+
+.project-featured-img {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ROW 3: 4-column image gallery */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.project-gallery-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ROWS 4-6: body paragraphs */
+.project-body {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.project-body p {
+  margin-bottom: 1.25rem;
+}
+
+.project-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* -----------------------------------------
+   RESPONSIVE: project page below 700px
+   ----------------------------------------- */
+@media (max-width: 700px) {
+  .project-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* -----------------------------------------
+   NAVIGATION BAR
+   ----------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid rgba(239, 203, 104, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.nav-logo {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-header-text);
+}
+
+/* Links + CTA button sit together in one flex row */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-family: var(--font-header);
+  font-size: 0.95rem;
+  color: var(--color-body-text);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-accent);
+}
+
+/* CTA button reuses .btn-primary from the base styles,
+   just slightly smaller so it fits the nav bar */
+.nav-cta {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+/* Hamburger icon — hidden by default, only shown on small screens */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger-bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-header-text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Turns the 3 bars into an "X" when the menu is open */
+.hamburger.is-active .hamburger-bar:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.hamburger.is-active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.is-active .hamburger-bar:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* -----------------------------------------
+   RESPONSIVE: collapse into hamburger menu
+   below 700px
+   ----------------------------------------- */
+@media (max-width: 700px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid rgba(239, 203, 104, 0.15);
+
+    /* Collapsed state: hidden above the viewport, no height */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links.is-open {
+    max-height: 400px; /* tall enough to reveal all links */
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    width: 100%;
+  }
+
+  .nav-cta-wrapper {
+    padding: 0.75rem 1.5rem 1.25rem;
+  }
+
+  .nav-cta {
+    display: block;
+    text-align: center;
+  }
+}
+
+/* -----------------------------------------
+   BIRTHRIGHT INC. SALON HOMEPAGE
+   ----------------------------------------- */
+.salon-site {
+  background: var(--color-bg);
+}
+
+.salon-site .navbar {
+  background: rgba(244, 244, 239, 0.97);
+  border-bottom-color: rgba(32, 51, 45, 0.12);
+}
+
+.salon-site .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-header-text);
+}
+
+.salon-site .nav-logo img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.salon-site .nav-logo span {
+  color: var(--color-accent);
+}
+
+.salon-site .hero {
+  position: relative;
+  min-height: 68vh;
+  min-height: 68svh;
+  padding: 0;
+  overflow: hidden;
+  background: #24342d;
+}
+
+.salon-site .hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(18, 35, 30, 0.88) 0%, rgba(18, 35, 30, 0.52) 53%, rgba(18, 35, 30, 0.08) 100%);
+  content: "";
+}
+
+.salon-site .hero-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  min-height: inherit;
+  padding: 4rem 1.5rem;
+}
+
+.salon-site .hero-content {
+  flex: 0 1 680px;
+  color: #fff;
+}
+
+.salon-site .hero-subheader {
+  margin-bottom: 0.75rem;
+  color: #f0a18a;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.salon-site .hero-header {
+  margin-bottom: 1rem;
+  color: #fff;
+  font-size: 4rem;
+  line-height: 1.05;
+}
+
+.salon-site .hero-body {
+  max-width: 540px;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.salon-site .hero-cta {
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.salon-site .hero-visual {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  min-height: 0;
+}
+
+.salon-site .hero-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center 14%;
+}
+
+.salon-site .hero-socials {
+  display: none;
+}
+
+.salon-services,
+.salon-looks {
+  padding: 5rem 1.5rem;
+}
+
+.salon-section-heading {
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.section-kicker {
+  margin-bottom: 0.55rem;
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.salon-section-heading h2,
+.salon-story h2,
+.salon-booking h2 {
+  margin-bottom: 0.75rem;
+  font-size: 2.25rem;
+}
+
+.salon-section-heading > p:last-child {
+  color: var(--color-body-text);
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-item {
+  min-height: 190px;
+  padding: 1.35rem;
+  background: var(--color-card-bg);
+  border: 1px solid rgba(32, 51, 45, 0.12);
+  border-top: 3px solid var(--color-accent);
+}
+
+.service-number {
+  display: block;
+  margin-bottom: 1.15rem;
+  color: var(--color-accent);
+  font-family: var(--font-header);
+  font-size: 1.15rem;
+}
+
+.service-item h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1.08rem;
+}
+
+.service-item p {
+  color: var(--color-body-text);
+  font-size: 0.9rem;
+}
+
+.salon-looks {
+  background: #e8eee8;
+}
+
+.look-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 220px;
+  gap: 0.85rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.look-item {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.look-item--large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.look-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.look-item:hover img {
+  transform: scale(1.035);
+}
+
+.look-item--promo img {
+  object-fit: contain;
+}
+
+.look-item--catalog img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.look-item figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.8rem 1rem 0.85rem;
+  background: linear-gradient(transparent, rgba(18, 35, 30, 0.78));
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.salon-booking {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  padding: 4rem max(1.5rem, calc((100vw - 1200px) / 2));
+  background: #263a33;
+  color: #fff;
+}
+
+.salon-booking h2 {
+  color: #fff;
+}
+
+.salon-booking .section-kicker {
+  color: #f0a18a;
+}
+
+.salon-booking p:not(.section-kicker) {
+  max-width: 610px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.salon-booking .booking-button {
+  grid-column: 2;
+  grid-row: 1;
+  background: #f4f4ef;
+  color: #20332d;
+}
+
+.salon-phone {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: center;
+  color: #fff;
+  font-weight: 600;
+}
+
+.salon-social-links {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.salon-social-links a {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.salon-social-links a:hover {
+  color: #f0a18a;
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .salon-site .hero {
+    min-height: 560px;
+    min-height: 68svh;
+  }
+
+  .salon-site .hero::before {
+    background: linear-gradient(90deg, rgba(18, 35, 30, 0.85), rgba(18, 35, 30, 0.32));
+  }
+
+  .salon-site .hero-header {
+    font-size: 3rem;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .look-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 180px;
+  }
+
+  .look-item--large {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .salon-booking {
+    grid-template-columns: 1fr;
+  }
+
+  .salon-booking .booking-button,
+  .salon-phone {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .salon-social-links {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-item {
+    min-height: 0;
+  }
+
+  .salon-site .nav-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .salon-site .nav-logo {
+    font-size: 1rem;
+  }
+
+  .salon-site .nav-logo img {
+    width: 34px;
+    height: 34px;
+  }
+}
